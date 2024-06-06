@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_assistant/learning_methods.dart';
+import 'package:my_assistant/screens/methods.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -33,7 +33,7 @@ class StartScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const LearningMethods(),
+                  builder: (context) => const LearningMethodsScreen(),
                 ),
               );
             },
