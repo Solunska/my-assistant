@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_assistant/classes/greetings.dart';
-import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class GreetingsScreen extends StatefulWidget {
+  const GreetingsScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _GreetingsScreenState createState() => _GreetingsScreenState();
 }
 
