@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_assistant/UI/category_button.dart';
-import 'package:my_assistant/learning_numbers.dart';
+import 'package:my_assistant/screens/learning_food.dart';
+import 'package:my_assistant/screens/learning_numbers.dart';
 import 'package:my_assistant/screens/learning_greetings.dart';
+import 'package:my_assistant/screens/learning_shapes.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final String appBarLabel;
@@ -73,7 +75,7 @@ class CategoriesScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LearningNumbers(),
+                          builder: (context) => const LearningShapes(),
                         ),
                       );
                     },
@@ -85,7 +87,7 @@ class CategoriesScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LearningNumbers(),
+                          builder: (context) => const LearningFood(),
                         ),
                       );
                     },
