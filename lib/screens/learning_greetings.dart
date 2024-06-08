@@ -17,22 +17,22 @@ class _GreetingsScreenState extends State<GreetingsScreen> {
   List<Greeting> greetings = [
     Greeting(
       title: 'ДОБРО УТРО',
-      image: 'assets/good-morning.png',
+      image: 'assets/greetings-images/good-morning.png',
       audio: 'assets/audio/hello.mp3',
     ),
     Greeting(
       title: 'ДОБРА НОЌ',
-      image: 'assets/good-night.png',
+      image: 'assets/greetings-images/good-night.png',
       audio: 'assets/audio/hello.mp3',
     ),
     Greeting(
       title: 'ЗДРАВО',
-      image: 'assets/hello.png',
+      image: 'assets/greetings-images/hello.png',
       audio: 'assets/audio/hello.mp3',
     ),
     Greeting(
       title: 'ПРИЈАТНО',
-      image: 'assets/goodbye.png',
+      image: 'assets/greetings-images/goodbye.png',
       audio: 'assets/audio/hello.mp3',
     ),
   ];

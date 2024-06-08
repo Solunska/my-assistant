@@ -91,7 +91,7 @@ class CategoriesScreen extends StatelessWidget {
                     },
                   ),
                   CustomButton(
-                    image: 'assets/greetings.png',
+                    image: 'assets/greetings-images/greetings.png',
                     label: 'ПОЗДРАВИ',
                     onPressed: () {
                       Navigator.push(
