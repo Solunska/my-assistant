@@ -66,6 +66,16 @@ flutter:
     - assets/playing.png
     - assets/numbers.png
     - assets/numbers/one.png
+    - assets/numbers/1.png
+    - assets/numbers/2.png
+    - assets/numbers/3.png
+    - assets/numbers/4.png
+    - assets/numbers/5.png
+    - assets/numbers/6.png
+    - assets/numbers/7.png
+    - assets/numbers/8.png
+    - assets/numbers/9.png
+    - assets/numbers/10.png
     - assets/numbers/two.png
     - assets/numbers/three.png
     - assets/numbers/four.png
@@ -83,6 +93,10 @@ flutter:
     - assets/greetings-images/goodbye.png
     - assets/food/apple.png
     - assets/shapes/circle.png
+    - assets/shapes/circle2.png
+    - assets/shapes/triangle.png
+    - assets/shapes/rectangle.png
+    - assets/shapes/square.png
     - assets/audio/hello.mp3
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

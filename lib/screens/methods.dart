@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_assistant/UI/button.dart';
 import 'package:my_assistant/screens/categories.dart';
+import 'package:my_assistant/screens/play_moodes.dart';
 
 class LearningMethodsScreen extends StatelessWidget {
   const LearningMethodsScreen({super.key});
@@ -23,8 +24,11 @@ class LearningMethodsScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        const CategoriesScreen(appBarLabel: 'УЧИМЕ'),
+                    builder: (context) => const CategoriesScreen(
+                      appBarLabel: 'УЧИМЕ',
+                      appBarFontSize: 43,
+                      gameMode: 'none',
+                    ),
                   ),
                 );
               },
@@ -39,9 +43,7 @@ class LearningMethodsScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CategoriesScreen(
-                      appBarLabel: 'ИГРАМЕ',
-                    ),
+                    builder: (context) => const PlayingModesScreen(),
                   ),
                 );
               },

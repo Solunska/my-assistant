@@ -9,3 +9,10 @@ class Food {
     required this.audio,
   });
 }
+
+List<Food> foods = [
+  Food(
+      title: 'dsad',
+      image: 'assets/food/apple.png',
+      audio: 'assets/audio/hello.mp3'),
+];

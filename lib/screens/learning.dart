@@ -1,81 +1,77 @@
 import 'package:flutter/material.dart';
+// import 'package:audioplayers/audioplayers.dart'; // Commented out since audio is not needed
+import 'package:my_assistant/classes/number.dart';
+import 'package:my_assistant/classes/food.dart';
 import 'package:my_assistant/classes/greetings.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:my_assistant/classes/shape.dart';
 
-class GreetingsScreen extends StatefulWidget {
-  const GreetingsScreen({super.key});
+class Learning extends StatefulWidget {
+  final String category;
+
+  const Learning({super.key, required this.category});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _GreetingsScreenState createState() => _GreetingsScreenState();
+  LearningState createState() => LearningState();
 }
 
-class _GreetingsScreenState extends State<GreetingsScreen> {
-  int currentIndex = 0; // Index of the currently displayed greeting
-  late AudioPlayer audioPlayer;
-
-  List<Greeting> greetings = [
-    Greeting(
-      title: 'ДОБРО УТРО',
-      image: 'assets/greetings-images/good-morning.png',
-      audio: 'assets/audio/hello.mp3',
-    ),
-    Greeting(
-      title: 'ДОБРА НОЌ',
-      image: 'assets/greetings-images/good-night.png',
-      audio: 'assets/audio/hello.mp3',
-    ),
-    Greeting(
-      title: 'ЗДРАВО',
-      image: 'assets/greetings-images/hello.png',
-      audio: 'assets/audio/hello.mp3',
-    ),
-    Greeting(
-      title: 'ПРИЈАТНО',
-      image: 'assets/greetings-images/goodbye.png',
-      audio: 'assets/audio/hello.mp3',
-    ),
-  ];
+class LearningState extends State<Learning> {
+  int currentIndex = 0;
+  // late AudioPlayer audioPlayer; // Commented out since audio is not needed
 
   @override
   void initState() {
     super.initState();
-    audioPlayer = AudioPlayer();
+    // audioPlayer = AudioPlayer(); // Commented out since audio is not needed
   }
 
   @override
   void dispose() {
-    audioPlayer.dispose();
+    // audioPlayer.dispose(); // Commented out since audio is not needed
     super.dispose();
   }
 
-  // void playAudio(String audioPath) async {
-  //   int result = await audioPlayer.play(audioPath, isLocal: true);
-  //   if (result == 1) {
-  //     print('Audio playback started successfully');
-  //   } else {
-  //     print('Error starting audio playback');
-  //   }
+  // void playAudio() async {
+  //   await audioPlayer.play(numbers[currentIndex].audio, isLocal: true);
   // }
-
-  void nextGreeting() {
-    setState(() {
-      if (currentIndex < greetings.length - 1) {
-        currentIndex++;
-      }
-    });
-  }
-
-  void previousGreeting() {
-    setState(() {
-      if (currentIndex > 0) {
-        currentIndex--;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic> categoryItems = [];
+    String label = '';
+    if (widget.category == 'numbers') {
+      categoryItems = numbers;
+      label = 'БРОЕВИ';
+    } else if (widget.category == 'shapes') {
+      categoryItems = shapes;
+      label = 'ФОРМИ';
+    } else if (widget.category == 'greetings') {
+      categoryItems = greetings;
+      label = 'ПОЗДРАВИ';
+    } else if (widget.category == 'foods') {
+      categoryItems = foods;
+      label = 'ХРАНА';
+    }
+
+    void nextItem() {
+      setState(() {
+        if (currentIndex < categoryItems.length - 1) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+      });
+    }
+
+    void previousItem() {
+      setState(() {
+        if (currentIndex > 0) {
+          currentIndex--;
+        } else {
+          currentIndex = categoryItems.length - 1;
+        }
+      });
+    }
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
@@ -89,9 +85,9 @@ class _GreetingsScreenState extends State<GreetingsScreen> {
               Navigator.of(context).pop();
             },
           ),
-          title: const Text(
-            'ПОЗДРАВИ',
-            style: TextStyle(
+          title: Text(
+            label,
+            style: const TextStyle(
               fontSize: 43,
               fontWeight: FontWeight.bold,
             ),
@@ -112,14 +108,17 @@ class _GreetingsScreenState extends State<GreetingsScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            greetings[currentIndex].image,
+            categoryItems[currentIndex].image,
             width: 800,
             height: 400,
           ),
           Text(
-            greetings[currentIndex].title,
+            categoryItems[currentIndex].title,
             style: const TextStyle(
-                fontSize: 45, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 45,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(height: 30),
           Row(
@@ -129,14 +128,14 @@ class _GreetingsScreenState extends State<GreetingsScreen> {
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(7),
                     backgroundColor: Colors.white),
-                onPressed: previousGreeting,
+                onPressed: nextItem,
                 child: IconButton(
                   icon: const Icon(
                     Icons.arrow_back_ios_rounded,
                     size: 35,
                     color: Color(0xFF084B83),
                   ),
-                  onPressed: previousGreeting,
+                  onPressed: previousItem,
                 ),
               ),
               const SizedBox(width: 50),
@@ -161,14 +160,14 @@ class _GreetingsScreenState extends State<GreetingsScreen> {
                   padding: const EdgeInsets.all(7),
                   backgroundColor: Colors.white,
                 ),
-                onPressed: nextGreeting,
+                onPressed: previousItem,
                 child: IconButton(
                   icon: const Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 35,
                     color: Color(0xFF084B83),
                   ),
-                  onPressed: nextGreeting,
+                  onPressed: nextItem,
                 ),
               ),
             ],
