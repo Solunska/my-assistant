@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_assistant/UI/button.dart';
 import 'package:my_assistant/screens/categories.dart';
 
 class PlayingModesScreen extends StatelessWidget {

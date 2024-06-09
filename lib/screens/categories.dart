@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_assistant/UI/category_button.dart';
 import 'package:my_assistant/screens/connect.dart';
 import 'package:my_assistant/screens/learning.dart';
+import 'package:my_assistant/screens/questions.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final String appBarLabel;
@@ -68,14 +69,20 @@ class CategoriesScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОВРЗИ ГИ\nБРОЕВИТЕ',),
+                            builder: (context) => const Connect(
+                              label: 'ПОВРЗИ ГИ\nБРОЕВИТЕ',
+                              category: 'numbers',
+                            ),
                           ),
                         );
                       } else if (gameMode == 'questions') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОГОДИ ГИ\nБРОЕВИТЕ',),
+                            builder: (context) => const Questions(
+                              label: 'ПОГОДИ ГИ\nБРОЕВИТЕ',
+                              category: 'numbers',
+                            ),
                           ),
                         );
                       } else {
@@ -97,14 +104,20 @@ class CategoriesScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОВРЗИ ГИ\nФОРМИТЕ',),
+                            builder: (context) => const Connect(
+                              label: 'ПОВРЗИ ГИ\nФОРМИТЕ',
+                              category: 'shapes',
+                            ),
                           ),
                         );
                       } else if (gameMode == 'questions') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОГОДИ ГИ\nФОРМИТЕ',),
+                            builder: (context) => const Questions(
+                              label: 'ПОГОДИ ГИ\nФОРМИТЕ',
+                              category: 'shapes',
+                            ),
                           ),
                         );
                       } else {
@@ -126,14 +139,20 @@ class CategoriesScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОВРЗИ ЈА\nХРАНАТА',),
+                            builder: (context) => const Connect(
+                              label: 'ПОВРЗИ ЈА\nХРАНАТА',
+                              category: 'foods',
+                            ),
                           ),
                         );
                       } else if (gameMode == 'questions') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОГОДИ ЈА\nХРАНАТА',),
+                            builder: (context) => const Questions(
+                              label: 'ПОГОДИ ЈА\nХРАНАТА',
+                              category: 'foods',
+                            ),
                           ),
                         );
                       } else {
@@ -155,14 +174,20 @@ class CategoriesScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОВРЗИ ГИ\nПОЗДРАВИТЕ',),
+                            builder: (context) => const Connect(
+                              label: 'ПОВРЗИ ГИ\nПОЗДРАВИТЕ',
+                              category: 'greetings',
+                            ),
                           ),
                         );
                       } else if (gameMode == 'questions') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Connect(label: 'ПОГОДИ ГИ\nПОЗДРАВИТЕ',),
+                            builder: (context) => const Questions(
+                              label: 'ПОГОДИ ГИ\nПОЗДРАВИТЕ',
+                              category: 'greetings',
+                            ),
                           ),
                         );
                       } else {

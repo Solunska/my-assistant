@@ -12,7 +12,7 @@ class Food {
 
 List<Food> foods = [
   Food(
-      title: 'dsad',
+      title: 'ЈАБОЛКО',
       image: 'assets/food/apple.png',
       audio: 'assets/audio/hello.mp3'),
 ];
