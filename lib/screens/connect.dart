@@ -18,12 +18,15 @@ class ConnectState extends State<Connect> {
   List<dynamic> shuffledTitles = [];
   List<int> selectedImagesIndex = [];
   List<int> selectedTitlesIndex = [];
-  bool isConnecting = false;
+  bool allMatched = false;
 
   @override
   void initState() {
     super.initState();
+    initializeGame();
+  }
 
+  void initializeGame() {
     List<dynamic> items = [];
     if (widget.category == 'numbers') {
       items = List<dynamic>.from(numbers);
@@ -35,8 +38,13 @@ class ConnectState extends State<Connect> {
       items = List<dynamic>.from(foods);
     }
 
-    shuffledImages = List.from(items)..shuffle();
-    shuffledTitles = List.from(items)..shuffle();
+    setState(() {
+      shuffledImages = List.from(items)..shuffle();
+      shuffledTitles = List.from(items)..shuffle();
+      selectedImagesIndex.clear();
+      selectedTitlesIndex.clear();
+      allMatched = false;
+    });
   }
 
   @override
@@ -72,84 +80,132 @@ class ConnectState extends State<Connect> {
           ),
         ),
       ),
-      body: Row(
-        children: [
-          // Left side with images
-          Expanded(
-            child: ListView.builder(
-              itemCount: shuffledImages.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (selectedImagesIndex.contains(index)) {
-                        selectedImagesIndex.remove(index);
-                      } else {
-                        if (selectedImagesIndex.length < 2) {
-                          selectedImagesIndex.add(index);
-                        }
-                      }
-                      checkConnections();
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    color: selectedImagesIndex.contains(index)
-                        ? Colors.blue.withOpacity(0.5)
-                        : Colors.transparent,
-                    child: ListTile(
-                      leading: SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: Image.asset(getImage(shuffledImages[index])),
+      body: allMatched
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'БРАВО!',
+                    style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: initializeGame,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          const Color(0xFFFF66B3), // background color
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 15),
+                      textStyle: const TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    child: const Text(
+                      'ИГРАЈ ПОВТОРНО',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-          // Right side with titles
-          Expanded(
-            child: ListView.builder(
-              itemCount: shuffledTitles.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (selectedTitlesIndex.contains(index)) {
-                        selectedTitlesIndex.remove(index);
-                      } else {
-                        if (selectedTitlesIndex.length < 2) {
-                          selectedTitlesIndex.add(index);
-                        }
-                      }
-                      checkConnections();
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    color: selectedTitlesIndex.contains(index)
-                        ? Colors.blue.withOpacity(0.5)
-                        : Colors.transparent,
-                    child: ListTile(
-                      title: SizedBox(
-                        height: 40,
-                        child: Center(
-                          child: Text(
-                            getTitle(shuffledTitles[index]),
-                            style: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.bold),
+                ],
+              ),
+            )
+          : Row(
+              children: [
+                // Left side with images
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: shuffledImages.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (selectedImagesIndex.contains(index)) {
+                              selectedImagesIndex.remove(index);
+                            } else {
+                              if (selectedImagesIndex.length < 2) {
+                                selectedImagesIndex.add(index);
+                              }
+                            }
+                            checkConnections();
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          color: selectedImagesIndex.contains(index)
+                              ? Colors.blue.withOpacity(0.5)
+                              : Colors.transparent,
+                          child: ListTile(
+                            leading: SizedBox(
+                              width: 100,
+                              height: 100,
+                              child:
+                                  Image.asset(getImage(shuffledImages[index])),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+                // Right side with titles
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: shuffledTitles.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (selectedTitlesIndex.contains(index)) {
+                              selectedTitlesIndex.remove(index);
+                            } else {
+                              if (selectedTitlesIndex.length < 2) {
+                                selectedTitlesIndex.add(index);
+                              }
+                            }
+                            checkConnections();
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          color: selectedTitlesIndex.contains(index)
+                              ? Colors.blue.withOpacity(0.5)
+                              : Colors.transparent,
+                          child: ListTile(
+                            title: SizedBox(
+                              height: 40,
+                              child: Center(
+                                child: Container(
+                                  width: 200,
+                                  height: 300,
+                                  padding: const EdgeInsets.all(5),
+                                  color: const Color.fromARGB(255, 255, 255, 255),
+                                  child: Text(
+                                    getTitle(shuffledTitles[index]),
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -171,6 +227,13 @@ class ConnectState extends State<Connect> {
           selectedImagesIndex.clear();
           selectedTitlesIndex.clear();
         });
+
+        // Check if all items are matched
+        if (shuffledImages.isEmpty && shuffledTitles.isEmpty) {
+          setState(() {
+            allMatched = true;
+          });
+        }
       } else {
         // Handle the incorrect pair (e.g., show an error message)
         ScaffoldMessenger.of(context).showSnackBar(
