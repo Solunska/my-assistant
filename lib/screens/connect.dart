@@ -185,7 +185,8 @@ class ConnectState extends State<Connect> {
                                   width: 200,
                                   height: 300,
                                   padding: const EdgeInsets.all(5),
-                                  color: const Color.fromARGB(255, 255, 255, 255),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
                                   child: Text(
                                     getTitle(shuffledTitles[index]),
                                     style: const TextStyle(
@@ -218,9 +219,7 @@ class ConnectState extends State<Connect> {
       );
       if (isCorrectPair) {
         // Handle the correct pair (e.g., show a success message, remove items, etc.)
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Correct pair!')),
-        );
+
         setState(() {
           shuffledImages.removeAt(selectedImagesIndex[0]);
           shuffledTitles.removeAt(selectedTitlesIndex[0]);
@@ -235,9 +234,24 @@ class ConnectState extends State<Connect> {
           });
         }
       } else {
-        // Handle the incorrect pair (e.g., show an error message)
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Incorrect pair!')),
+          SnackBar(
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 1),
+            content: Container(
+              height: 70,
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              color: Colors.red,
+              child: const Text(
+                'ГРЕШЕН ПАР!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ),
         );
         setState(() {
           selectedImagesIndex.clear();
