@@ -14,17 +14,17 @@ List<Shape> shapes = [
   Shape(
       title: 'КРУГ',
       image: 'assets/shapes/circle2.png',
-      audio: 'assets/audio/hello.mp3'),
+      audio: 'assets/audio/circle.mp3'),
   Shape(
       title: 'ТРИАГОЛНИК',
       image: 'assets/shapes/triangle.png',
-      audio: 'assets/audio/hello.mp3'),
+      audio: 'assets/audio/triangle.mp3'),
   Shape(
       title: 'КВАДРАТ',
       image: 'assets/shapes/square.png',
-      audio: 'assets/audio/hello.mp3'),
+      audio: 'assets/audio/square.mp3'),
   Shape(
       title: 'ПРАВОАГОЛНИК',
       image: 'assets/shapes/rectangle.png',
-      audio: 'assets/audio/hello.mp3'),
+      audio: 'assets/audio/rectangle.mp3'),
 ];

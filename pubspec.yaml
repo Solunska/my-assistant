@@ -94,6 +94,30 @@ flutter:
     - assets/shapes/rectangle.png
     - assets/shapes/square.png
     - assets/audio/hello.mp3
+    - assets/audio/good-morning.mp3
+    - assets/audio/good-night.mp3
+    - assets/audio/bye.mp3
+    - assets/audio/apple.mp3
+    - assets/audio/banana.mp3
+    - assets/audio/carrot.mp3
+    - assets/audio/orange.mp3
+    - assets/audio/pear.mp3
+    - assets/audio/watermelon.mp3
+    - assets/audio/one.mp3
+    - assets/audio/two.mp3
+    - assets/audio/three.mp3
+    - assets/audio/four.mp3
+    - assets/audio/five.mp3
+    - assets/audio/six.mp3
+    - assets/audio/seven.mp3
+    - assets/audio/eight.mp3
+    - assets/audio/nine.mp3
+    - assets/audio/ten.mp3
+    - assets/audio/circle.mp3
+    - assets/audio/triangle.mp3
+    - assets/audio/square.mp3
+    - assets/audio/rectangle.mp3
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
