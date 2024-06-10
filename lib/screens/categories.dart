@@ -50,12 +50,13 @@ class CategoriesScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Spacer(),
             Container(
-              height: 500,
+              height: 600,
               padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.only(top: 60),
               child: GridView.count(
                 crossAxisCount: 2,
                 mainAxisSpacing: 60,
@@ -204,6 +205,7 @@ class CategoriesScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const Spacer(),
           ],
         ),
       ),

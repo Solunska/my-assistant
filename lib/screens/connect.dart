@@ -137,7 +137,8 @@ class ConnectState extends State<Connect> {
                           });
                         },
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          height: 100,
+                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                           color: selectedImagesIndex.contains(index)
                               ? Colors.blue.withOpacity(0.5)
                               : Colors.transparent,
@@ -173,18 +174,19 @@ class ConnectState extends State<Connect> {
                           });
                         },
                         child: Container(
+                          height: 100,
                           padding: const EdgeInsets.symmetric(vertical: 10.0),
                           color: selectedTitlesIndex.contains(index)
                               ? Colors.blue.withOpacity(0.5)
                               : Colors.transparent,
                           child: ListTile(
                             title: SizedBox(
-                              height: 40,
+                              height: 60,
                               child: Center(
                                 child: Container(
                                   width: 200,
                                   height: 300,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: const EdgeInsets.only(top: 15, bottom: 15),
                                   color:
                                       const Color.fromARGB(255, 255, 255, 255),
                                   child: Text(
@@ -245,10 +247,9 @@ class ConnectState extends State<Connect> {
               child: const Text(
                 'ГРЕШЕН ПАР!',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold
-                ),
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:audioplayers/audioplayers.dart'; // Commented out since audio is not needed
 import 'package:my_assistant/classes/number.dart';
 import 'package:my_assistant/classes/food.dart';
 import 'package:my_assistant/classes/greetings.dart';
 import 'package:my_assistant/classes/shape.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class Learning extends StatefulWidget {
   final String category;
@@ -15,24 +15,23 @@ class Learning extends StatefulWidget {
 }
 
 class LearningState extends State<Learning> {
+  final player = AudioPlayer();
   int currentIndex = 0;
-  // late AudioPlayer audioPlayer; // Commented out since audio is not needed
+
+  Future<void> playAudio(String url) async {
+    await player.play(UrlSource(url));
+  }
 
   @override
   void initState() {
     super.initState();
-    // audioPlayer = AudioPlayer(); // Commented out since audio is not needed
   }
 
   @override
   void dispose() {
-    // audioPlayer.dispose(); // Commented out since audio is not needed
+    player.dispose();
     super.dispose();
   }
-
-  // void playAudio() async {
-  //   await audioPlayer.play(numbers[currentIndex].audio, isLocal: true);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +127,7 @@ class LearningState extends State<Learning> {
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(7),
                     backgroundColor: Colors.white),
-                onPressed: nextItem,
+                onPressed: previousItem,
                 child: IconButton(
                   icon: const Icon(
                     Icons.arrow_back_ios_rounded,
@@ -141,18 +140,17 @@ class LearningState extends State<Learning> {
               const SizedBox(width: 50),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(7),
+                  padding: const EdgeInsets.all(20),
                   backgroundColor: const Color(0xFFFF66B3),
                 ),
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.volume_up,
-                    size: 35,
-                    color: Colors.white,
-                  ),
-                  onPressed: () => {},
+                onPressed: () {
+                  playAudio(categoryItems[currentIndex].audio);
+                },
+                child: const Icon(
+                  Icons.volume_up,
+                  size: 35,
+                  color: Colors.white,
                 ),
-                onPressed: () => {},
               ),
               const SizedBox(width: 50),
               ElevatedButton(
@@ -160,7 +158,7 @@ class LearningState extends State<Learning> {
                   padding: const EdgeInsets.all(7),
                   backgroundColor: Colors.white,
                 ),
-                onPressed: previousItem,
+                onPressed: nextItem,
                 child: IconButton(
                   icon: const Icon(
                     Icons.arrow_forward_ios_rounded,
