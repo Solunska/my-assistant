@@ -100,7 +100,7 @@ class QuestionsState extends State<Questions> {
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: SizedBox(
                   width: 250,
-                  height: 65,
+                  height: 75,
                   child: ElevatedButton(
                     onPressed: disabledAnswers.contains(answer)
                         ? null
@@ -111,7 +111,7 @@ class QuestionsState extends State<Questions> {
                         vertical: 15,
                       ),
                       textStyle: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.black, // Text color
                       ),
