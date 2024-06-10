@@ -14,17 +14,16 @@ class Questions extends StatefulWidget {
 }
 
 class QuestionsState extends State<Questions> {
-  List<dynamic> shuffledImages = [];
-  List<dynamic> shuffledTitles = [];
-  List<int> selectedImagesIndex = [];
-  List<int> selectedTitlesIndex = [];
-  bool isConnecting = false;
+  List<dynamic> items = [];
+  List<String> answers = [];
+  List<String> disabledAnswers = [];
+  dynamic currentItem;
+  String message = '';
 
   @override
   void initState() {
     super.initState();
 
-    List<dynamic> items = [];
     if (widget.category == 'numbers') {
       items = List<dynamic>.from(numbers);
     } else if (widget.category == 'shapes') {
@@ -35,8 +34,28 @@ class QuestionsState extends State<Questions> {
       items = List<dynamic>.from(foods);
     }
 
-    shuffledImages = List.from(items)..shuffle();
-    shuffledTitles = List.from(items)..shuffle();
+    setupQuestion();
+  }
+
+  void setupQuestion() {
+    items.shuffle();
+    answers =
+        items.take(3).map<String>((item) => item.title as String).toList();
+    answers.shuffle();
+    disabledAnswers.clear();
+    currentItem = items.first;
+  }
+
+  void checkAnswer(String answer) {
+    setState(() {
+      if (answer == currentItem.title) {
+        message = 'ТОЧНО!';
+        setupQuestion();
+      } else {
+        message = 'ГРЕШНО, ОБИДИ СЕ ПОВТОРНО!';
+        disabledAnswers.add(answer); // Add incorrect answer to disabled list
+      }
+    });
   }
 
   @override
@@ -70,6 +89,60 @@ class QuestionsState extends State<Questions> {
             fontSize: 24,
             fontWeight: FontWeight.w900,
           ),
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (var answer in answers)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: SizedBox(
+                  width: 250,
+                  height: 65,
+                  child: ElevatedButton(
+                    onPressed: disabledAnswers.contains(answer)
+                        ? null
+                        : () => checkAnswer(answer),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black, // Text color
+                      ),
+                      backgroundColor: disabledAnswers.contains(answer)
+                          ? Colors.red
+                          : Colors.white, // Background color
+                    ),
+                    child: Text(
+                      answer,
+                      style: const TextStyle(
+                        color: Colors.black, // Text color
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            const SizedBox(height: 60),
+            SizedBox(
+              width: 200,
+              height: 200,
+              child: Image.asset(currentItem.image),
+            ),
+            Text(
+              message,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: message == 'ТОЧНО!' ? Colors.green : Colors.red,
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_assistant/UI/button.dart';
 import 'package:my_assistant/screens/categories.dart';
-import 'package:my_assistant/screens/play_moodes.dart';
+import 'package:my_assistant/screens/play_modes.dart';
 
 class LearningMethodsScreen extends StatelessWidget {
   const LearningMethodsScreen({super.key});
