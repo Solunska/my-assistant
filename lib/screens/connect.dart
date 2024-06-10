@@ -65,7 +65,7 @@ class ConnectState extends State<Connect> {
           title: Text(
             widget.label,
             style: const TextStyle(
-              fontSize: 30,
+              fontSize: 28,
               fontWeight: FontWeight.bold,
             ),
           ),

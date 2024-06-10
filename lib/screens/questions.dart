@@ -76,7 +76,7 @@ class QuestionsState extends State<Questions> {
           title: Text(
             widget.label,
             style: const TextStyle(
-              fontSize: 30,
+              fontSize: 28,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -117,7 +117,8 @@ class QuestionsState extends State<Questions> {
                       ),
                       backgroundColor: disabledAnswers.contains(answer)
                           ? Colors.red
-                          : Colors.white, // Background color
+                          : Colors.white,
+                      // Background color
                     ),
                     child: Text(
                       answer,
