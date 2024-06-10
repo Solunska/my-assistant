@@ -65,7 +65,6 @@ flutter:
     - assets/learning.png
     - assets/playing.png
     - assets/numbers.png
-    - assets/numbers/one.png
     - assets/numbers/1.png
     - assets/numbers/2.png
     - assets/numbers/3.png
@@ -76,14 +75,6 @@ flutter:
     - assets/numbers/8.png
     - assets/numbers/9.png
     - assets/numbers/10.png
-    - assets/numbers/two.png
-    - assets/numbers/three.png
-    - assets/numbers/four.png
-    - assets/numbers/five.png
-    - assets/numbers/six.png
-    - assets/numbers/seven.png
-    - assets/numbers/eight.png
-    - assets/numbers/nine.png
     - assets/shapes.png
     - assets/food.png
     - assets/greetings-images/greetings.png
@@ -92,6 +83,11 @@ flutter:
     - assets/greetings-images/good-night.png
     - assets/greetings-images/goodbye.png
     - assets/food/apple.png
+    - assets/food/banana.png
+    - assets/food/carrot.png
+    - assets/food/orange.png
+    - assets/food/pear.png
+    - assets/food/watermelon.png
     - assets/shapes/circle.png
     - assets/shapes/circle2.png
     - assets/shapes/triangle.png
