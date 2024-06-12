@@ -20,7 +20,7 @@ class Button extends StatelessWidget {
       child: Text(
         label,
         style: const TextStyle(
-            fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
+            fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
       ),
     );
   }

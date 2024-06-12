@@ -22,7 +22,7 @@ class CustomButton extends StatelessWidget {
           children: [
             SizedBox(
               width: 170, // Fixed width
-              height: 130, // Fixed height
+              height: 120, // Fixed height
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:confetti/confetti.dart';
 import 'package:my_assistant/classes/number.dart';
 import 'package:my_assistant/classes/food.dart';
 import 'package:my_assistant/classes/greetings.dart';
@@ -19,10 +20,14 @@ class QuestionsState extends State<Questions> {
   List<String> disabledAnswers = [];
   dynamic currentItem;
   String message = '';
+  late ConfettiController _confettiController;
 
   @override
   void initState() {
     super.initState();
+
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 1));
 
     if (widget.category == 'numbers') {
       items = List<dynamic>.from(numbers);
@@ -37,6 +42,12 @@ class QuestionsState extends State<Questions> {
     setupQuestion();
   }
 
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
+  }
+
   void setupQuestion() {
     items.shuffle();
     answers =
@@ -49,8 +60,10 @@ class QuestionsState extends State<Questions> {
   void checkAnswer(String answer) {
     setState(() {
       if (answer == currentItem.title) {
-        message = 'ТОЧНО!';
-        setupQuestion();
+        _confettiController.play();
+        Future.delayed(const Duration(seconds: 2), () {
+          setupQuestion();
+        });
       } else {
         message = 'ГРЕШНО, ОБИДИ СЕ ПОВТОРНО!';
         disabledAnswers.add(answer); // Add incorrect answer to disabled list
@@ -92,55 +105,76 @@ class QuestionsState extends State<Questions> {
         ),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            for (var answer in answers)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: SizedBox(
-                  width: 250,
-                  height: 75,
-                  child: ElevatedButton(
-                    onPressed: disabledAnswers.contains(answer)
-                        ? null
-                        : () => checkAnswer(answer),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 15,
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (var answer in answers)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: SizedBox(
+                        width: 250,
+                        height: 75,
+                        child: ElevatedButton(
+                          onPressed: disabledAnswers.contains(answer)
+                              ? null
+                              : () => checkAnswer(answer),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 15,
+                            ),
+                            textStyle: const TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black, // Text color
+                            ),
+                            backgroundColor: disabledAnswers.contains(answer)
+                                ? Colors.red
+                                : Colors.white,
+                            // Background color
+                          ),
+                          child: Text(
+                            answer,
+                            style: const TextStyle(
+                              color: Colors.black, // Text color
+                            ),
+                          ),
+                        ),
                       ),
-                      textStyle: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black, // Text color
-                      ),
-                      backgroundColor: disabledAnswers.contains(answer)
-                          ? Colors.red
-                          : Colors.white,
-                      // Background color
                     ),
-                    child: Text(
-                      answer,
-                      style: const TextStyle(
-                        color: Colors.black, // Text color
-                      ),
+                  const SizedBox(height: 60),
+                  SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: Image.asset(currentItem.image),
+                  ),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold
                     ),
                   ),
-                ),
+                ],
               ),
-            const SizedBox(height: 60),
-            SizedBox(
-              width: 200,
-              height: 200,
-              child: Image.asset(currentItem.image),
             ),
-            Text(
-              message,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: message == 'ТОЧНО!' ? Colors.green : Colors.red,
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiWidget(
+                confettiController: _confettiController,
+                blastDirectionality: BlastDirectionality.explosive,
+                shouldLoop: false,
+                colors: const [
+                  Colors.red,
+                  Colors.blue,
+                  Colors.green,
+                  Colors.yellow,
+                  Colors.orange,
+                  Colors.purple
+                ],
               ),
             ),
           ],
