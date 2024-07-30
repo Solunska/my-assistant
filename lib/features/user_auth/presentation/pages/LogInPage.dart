@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_assistant/features/user_auth/presentation/firebase_auth_impl/firebase_auth_services.dart';
 import 'package:my_assistant/features/user_auth/presentation/pages/RegisterPage.dart';
 import 'package:my_assistant/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:my_assistant/global/common/toast.dart';
 import 'package:my_assistant/screens/start.dart';
 
 class LogInPage extends StatefulWidget {
@@ -13,11 +14,11 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
 
-    final FirebaseAuthService _auth = FirebaseAuthService();
-
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  bool _isLogingIn = false;
 
   @override
   void dispose() {
@@ -25,6 +26,7 @@ class _LogInPageState extends State<LogInPage> {
     _passwordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +57,7 @@ class _LogInPageState extends State<LogInPage> {
               ),
               const SizedBox(height: 30),
               GestureDetector(
-                onTap:_login,
+                onTap: _login,
                 child: Container(
                   width: double.infinity,
                   height: 50,
@@ -63,8 +65,9 @@ class _LogInPageState extends State<LogInPage> {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
-                    child: Text(
+                  child: Center(
+                    child: _isLogingIn ?  CircularProgressIndicator(color: Colors.white,) :
+                    Text(
                       'Најава',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                       textAlign: TextAlign.center,
@@ -72,17 +75,22 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20), // Add space between the button and the text
+              const SizedBox(
+                  height: 20), // Add space between the button and the text
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Уште немаш профил?",style: TextStyle(color:Colors.white),),
+                  const Text(
+                    "Уште немаш профил?",
+                    style: TextStyle(color: Colors.white),
+                  ),
                   const SizedBox(width: 5),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const RegisterPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterPage()),
                         (route) => false,
                       );
                     },
@@ -102,17 +110,26 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-    void _login() async {
+
+  void _login() async {
+    setState(() {
+      _isLogingIn = true;
+    });
+
     String email = _emailController.text;
     String password = _passwordController.text;
 
+   
     User? user = await _auth.logInUserWithEmailAndPass(email, password);
+
+     setState(() {
+      _isLogingIn = false;
+    });
     if (user != null) {
-      print("User is successfully logged in");
+      showToast(message: "Успешна најава");
       Navigator.pushNamed(context, "/start");
     } else {
-      print("Error occurred while logging in user");
+      showToast(message: "Настана проблем при најава на корисникот");
     }
-    //TODO: Implement the logic for logging out a user
   }
 }

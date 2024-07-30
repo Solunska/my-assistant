@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_assistant/features/user_auth/presentation/firebase_auth_impl/firebase_auth_services.dart';
 import 'package:my_assistant/features/user_auth/presentation/pages/LogInPage.dart';
 import 'package:my_assistant/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:my_assistant/global/common/toast.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+    bool _isRegistering = false;
+
 
   @override
   void dispose() {
@@ -63,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: _register,
-                child: const Text(
+                child:  _isRegistering ?  CircularProgressIndicator(color: Colors.white,) :Text(
                   'Регистрација',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
@@ -109,16 +112,24 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _register() async {
+
+      setState(() {
+      _isRegistering = true;
+    });
+
     String username = _usernameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
 
     User? user = await _auth.registerWithEmailAndPass(email, password);
+
+         setState(() {
+      _isRegistering = false;
+    });
     if (user != null) {
-      print("User is successfully created");
       Navigator.pushNamed(context, "/start");
     } else {
-      print("Error occurred while creating user");
+      showToast(message:"Грешка при креирање на корисник");
     }
     //TODO: Implement the logic for logging out a user
   }
