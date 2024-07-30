@@ -8,7 +8,7 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue, // Assuming the background is blue
+      backgroundColor: const Color(0xFF084B83), // Assuming the background is blue
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -19,7 +19,7 @@ class StartScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 45,
-                color: Colors.white,
+                color:Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -41,16 +41,16 @@ class StartScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-                backgroundColor: const Color(0xFFFF66B3),
+                padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 25),
+                backgroundColor: Colors.white,
                 textStyle: const TextStyle(
                   fontSize: 25,
-                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               child: const Text(
                 'АЈДЕ ДА УЧИМЕ ЗАЕДНО',
+                style: TextStyle( color: Color(0xFF084B83),fontWeight: FontWeight.w900),
               ),
             ),
             const SizedBox(height: 20), // Add some space between the buttons
@@ -60,16 +60,17 @@ class StartScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/login');
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 backgroundColor: Colors.red,
                 textStyle: const TextStyle(
                   fontSize: 15,
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
               child: const Text(
                 'ЧАО ЧАО!',
+                style: TextStyle(color:  Color(0xFFF0F6F6), fontSize: 20),
               ),
             ),
           ],

@@ -69,12 +69,12 @@ class ConnectState extends State<Connect> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: const Color(0xFF42BFDD),
+          backgroundColor: const Color(0xFFF0F0F6),
           iconTheme: const IconThemeData(
-            color: Colors.white,
+            color: Color(0xFF084B83),
           ),
           titleTextStyle: const TextStyle(
-            color: Colors.white,
+            color: Color(0xFF084B83),
             fontSize: 24,
             fontWeight: FontWeight.w900,
           ),

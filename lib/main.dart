@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(child: RegisterPage()),
+        '/': (context) => const SplashScreen(child: RegisterPage()),
         '/login': (context) => const SplashScreen(child: LogInPage()),
         '/start': (context) => const StartScreen(), 
       },
