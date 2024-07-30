@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:my_assistant/classes/number.dart';
 import 'package:my_assistant/classes/food.dart';
 import 'package:my_assistant/classes/greetings.dart';
@@ -116,99 +117,101 @@ class ConnectState extends State<Connect> {
                 ],
               ),
             )
-          : Row(
-              children: [
-                // Left side with images
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: shuffledImages.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (selectedImagesIndex.contains(index)) {
-                              selectedImagesIndex.remove(index);
-                            } else {
-                              if (selectedImagesIndex.length < 2) {
-                                selectedImagesIndex.add(index);
+          : SingleChildScrollView(
+            child: Row(
+                children: [
+                  // Left column with images
+                  Expanded(
+                    child: Column(
+                      children: List.generate(shuffledImages.length, (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              if (selectedImagesIndex.contains(index)) {
+                                selectedImagesIndex.remove(index);
+                              } else {
+                                if (selectedImagesIndex.length < 2) {
+                                  selectedImagesIndex.add(index);
+                                }
                               }
-                            }
-                            checkConnections();
-                          });
-                        },
-                        child: Container(
-                          height: 100,
-                          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                          color: selectedImagesIndex.contains(index)
-                              ? Colors.blue.withOpacity(0.5)
-                              : Colors.transparent,
-                          child: ListTile(
-                            leading: SizedBox(
-                              width: 100,
-                              height: 100,
-                              child:
-                                  Image.asset(getImage(shuffledImages[index])),
+                              checkConnections();
+                            });
+                          },
+                          child: Container(
+                            height: 100,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20.0),
+                            color: selectedImagesIndex.contains(index)
+                                ? Colors.blue.withOpacity(0.5)
+                                : Colors.transparent,
+                            child: ListTile(
+                              leading: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child:
+                                    Image.asset(getImage(shuffledImages[index])),
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      }),
+                    ),
                   ),
-                ),
-                // Right side with titles
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: shuffledTitles.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (selectedTitlesIndex.contains(index)) {
-                              selectedTitlesIndex.remove(index);
-                            } else {
-                              if (selectedTitlesIndex.length < 2) {
-                                selectedTitlesIndex.add(index);
+                  // Right column with titles
+                  Expanded(
+                    child: Column(
+                      children: List.generate(shuffledTitles.length, (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              if (selectedTitlesIndex.contains(index)) {
+                                selectedTitlesIndex.remove(index);
+                              } else {
+                                if (selectedTitlesIndex.length < 2) {
+                                  selectedTitlesIndex.add(index);
+                                }
                               }
-                            }
-                            checkConnections();
-                          });
-                        },
-                        child: Container(
-                          height: 100,
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          color: selectedTitlesIndex.contains(index)
-                              ? Colors.blue.withOpacity(0.5)
-                              : Colors.transparent,
-                          child: ListTile(
-                            title: SizedBox(
-                              height: 60,
-                              child: Center(
-                                child: Container(
-                                  width: 200,
-                                  height: 300,
-                                  padding: const EdgeInsets.only(top: 15, bottom: 15),
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  child: Text(
-                                    getTitle(shuffledTitles[index]),
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Color.fromARGB(255, 0, 0, 0),
-                                      fontWeight: FontWeight.bold,
+                              checkConnections();
+                            });
+                          },
+                          child: Container(
+                            height: 100,
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            color: selectedTitlesIndex.contains(index)
+                                ? Colors.blue.withOpacity(0.5)
+                                : Colors.transparent,
+                            child: ListTile(
+                              title: SizedBox(
+                                height: 60,
+                                child: Center(
+                                  child: Container(
+                                    width: 200,
+                                    height: 300,
+                                    padding: const EdgeInsets.only(
+                                        top: 15, bottom: 15),
+                                    color:
+                                        const Color.fromARGB(255, 255, 255, 255),
+                                    child: Text(
+                                      getTitle(shuffledTitles[index]),
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
-                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      }),
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+          ),
     );
   }
 
