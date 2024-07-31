@@ -14,21 +14,21 @@ List<Greeting> greetings = [
   Greeting(
     title: 'ДОБРО УТРО',
     image: 'assets/greetings-images/good-morning.png',
-    audio: 'assets/audio/good-morning.mp3',
+    audio: 'audio/good-morning.mp3',
   ),
   Greeting(
     title: 'ДОБРА НОЌ',
     image: 'assets/greetings-images/good-night.png',
-    audio: 'assets/audio/good-night.mp3',
+    audio: 'audio/good-night.mp3',
   ),
   Greeting(
     title: 'ЗДРАВО',
     image: 'assets/greetings-images/hello.png',
-    audio: 'assets/audio/hello.mp3',
+    audio: 'audio/hello.mp3',
   ),
   Greeting(
     title: 'ПРИЈАТНО',
     image: 'assets/greetings-images/goodbye.png',
-    audio: 'assets/audio/bye.mp3',
+    audio: 'audio/bye.mp3',
   ),
 ];

@@ -14,41 +14,41 @@ List<Number> numbers = [
   Number(
       title: 'ЕДЕН',
       image: 'assets/numbers/1.png',
-      audio: 'assets/audio/one.mp3'),
+      audio: 'audio/one.mp3'),
   Number(
       title: 'ДВА',
       image: 'assets/numbers/2.png',
-      audio: 'assets/audio/two.mp3'),
+      audio: 'audio/two.mp3'),
   Number(
       title: 'ТРИ',
       image: 'assets/numbers/3.png',
-      audio: 'assets/audio/three.mp3'),
+      audio: 'audio/three.mp3'),
   Number(
       title: 'ЧЕТИРИ',
       image: 'assets/numbers/4.png',
-      audio: 'assets/audio/four.mp3'),
+      audio: 'audio/four.mp3'),
   Number(
       title: 'ПЕТ',
       image: 'assets/numbers/5.png',
-      audio: 'assets/audio/give.mp3'),
+      audio: 'audio/give.mp3'),
   Number(
       title: 'ШЕСТ',
       image: 'assets/numbers/6.png',
-      audio: 'assets/audio/six.mp3'),
+      audio: 'audio/six.mp3'),
   Number(
       title: 'СЕДУМ',
       image: 'assets/numbers/7.png',
-      audio: 'assets/audio/seven.mp3'),
+      audio: 'audio/seven.mp3'),
   Number(
       title: 'ОСУМ',
       image: 'assets/numbers/8.png',
-      audio: 'assets/audio/eight.mp3'),
+      audio: 'audio/eight.mp3'),
   Number(
       title: 'ДЕВЕТ',
       image: 'assets/numbers/9.png',
-      audio: 'assets/audio/nine.mp3'),
+      audio: 'audio/nine.mp3'),
   Number(
       title: 'ДЕСЕТ',
       image: 'assets/numbers/10.png',
-      audio: 'assets/audio/ten.mp3'),
+      audio: 'audio/ten.mp3'),
 ];

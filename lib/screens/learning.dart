@@ -15,22 +15,28 @@ class Learning extends StatefulWidget {
 }
 
 class LearningState extends State<Learning> {
-  final player = AudioPlayer();
+ // final player = AudioPlayer();
   int currentIndex = 0;
 
-  Future<void> playAudio(String url) async {
-    await player.play(UrlSource(url));
-  }
+  // Future<void> playAudio(String url) async {
+  //   await player.play(UrlSource(url));
+  // }
 
   @override
   void initState() {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    player.dispose();
-    super.dispose();
+  // @override
+  // void dispose() {
+  //   player.dispose();
+  //   super.dispose();
+  // }
+
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+  void _playAudio(String audioFile) {
+    _audioPlayer.play(AssetSource(audioFile));
   }
 
   @override
@@ -144,7 +150,7 @@ class LearningState extends State<Learning> {
                   backgroundColor: const Color(0xFFFF66B3),
                 ),
                 onPressed: () {
-                  playAudio(categoryItems[currentIndex].audio);
+                   _playAudio(categoryItems[currentIndex].audio);
                 },
                 child: const Icon(
                   Icons.volume_up,
