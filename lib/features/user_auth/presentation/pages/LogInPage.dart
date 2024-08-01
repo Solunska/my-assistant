@@ -4,7 +4,7 @@ import 'package:my_assistant/features/user_auth/presentation/firebase_auth_impl/
 import 'package:my_assistant/features/user_auth/presentation/pages/RegisterPage.dart';
 import 'package:my_assistant/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:my_assistant/global/common/toast.dart';
-import 'package:my_assistant/screens/start.dart';
+import 'package:my_assistant/screens/methods.dart'; // Import the CategoriesScreen
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -66,17 +66,17 @@ class _LogInPageState extends State<LogInPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
-                    child: _isLogingIn ?  CircularProgressIndicator(color: Colors.white,) :
-                    Text(
-                      'Најава',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                      textAlign: TextAlign.center,
-                    ),
+                    child: _isLogingIn 
+                      ? const CircularProgressIndicator(color: Colors.white,) 
+                      : const Text(
+                          'Најава',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
                   ),
                 ),
               ),
-              const SizedBox(
-                  height: 20), // Add space between the button and the text
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -90,7 +90,8 @@ class _LogInPageState extends State<LogInPage> {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const RegisterPage()),
+                          builder: (context) => const RegisterPage(),
+                        ),
                         (route) => false,
                       );
                     },
@@ -119,15 +120,20 @@ class _LogInPageState extends State<LogInPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-   
     User? user = await _auth.logInUserWithEmailAndPass(email, password);
 
-     setState(() {
+    setState(() {
       _isLogingIn = false;
     });
+
     if (user != null) {
       showToast(message: "Успешна најава");
-      Navigator.pushNamed(context, "/start");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LearningMethodsScreen( ),
+        ),
+      );
     } else {
       showToast(message: "Настана проблем при најава на корисникот");
     }

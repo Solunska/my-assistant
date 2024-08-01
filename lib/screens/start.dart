@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:my_assistant/features/user_auth/presentation/pages/LogInPage.dart';
 import 'package:my_assistant/screens/methods.dart';
 
 class StartScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF084B83), // Assuming the background is blue
+      backgroundColor: const Color(0xFF084B83),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -19,7 +20,7 @@ class StartScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 45,
-                color:Colors.white,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -50,27 +51,31 @@ class StartScreen extends StatelessWidget {
               ),
               child: const Text(
                 'АЈДЕ ДА УЧИМЕ ЗАЕДНО',
-                style: TextStyle( color: Color(0xFF084B83),fontWeight: FontWeight.w900),
+                style: TextStyle(color: Color(0xFF084B83), fontWeight: FontWeight.w900),
               ),
             ),
-            const SizedBox(height: 20), // Add some space between the buttons
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushNamed(context, '/login');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LogInPage(),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                backgroundColor: Colors.red,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
                 textStyle: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  fontWeight: FontWeight.w900,
                 ),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               ),
               child: const Text(
-                'ЧАО ЧАО!',
-                style: TextStyle(color:  Color(0xFFF0F6F6), fontSize: 20),
+                'Ова поле е за мама и тато',
               ),
             ),
           ],

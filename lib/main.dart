@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_assistant/features/app/splash_screen/splash_screen.dart';
 import 'package:my_assistant/features/user_auth/presentation/pages/LogInPage.dart';
 import 'package:my_assistant/features/user_auth/presentation/pages/RegisterPage.dart';
+import 'package:my_assistant/screens/methods.dart';
 import 'package:my_assistant/screens/start.dart';
+import 'package:my_assistant/screens/categories.dart'; // Import the CategoriesScreen
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -26,9 +28,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const SplashScreen(child: RegisterPage()),
-        '/login': (context) => const SplashScreen(child: LogInPage()),
-        '/start': (context) => const StartScreen(), 
+        '/': (context) => const StartScreen(),
+        '/login': (context) => const LogInPage(),
+        '/learning': (context) => LearningMethodsScreen(),
       },
     );
   }
