@@ -4,7 +4,8 @@ import 'package:my_assistant/features/user_auth/presentation/firebase_auth_impl/
 import 'package:my_assistant/features/user_auth/presentation/pages/RegisterPage.dart';
 import 'package:my_assistant/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:my_assistant/global/common/toast.dart';
-import 'package:my_assistant/screens/methods.dart'; // Import the CategoriesScreen
+import 'package:my_assistant/screens/methods.dart';
+import 'package:my_assistant/screens/progress.dart'; // Import the CategoriesScreen
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -131,7 +132,7 @@ class _LogInPageState extends State<LogInPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => LearningMethodsScreen( ),
+          builder: (context) => ProgressScreen( ),
         ),
       );
     } else {
